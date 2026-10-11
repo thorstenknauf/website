@@ -1,0 +1,534 @@
+<!doctype html>
+<!-- Thorsten Knauf · Petrol-Version (Stand: 11.10.2026) – diese Markierung kennzeichnet die aktuelle Fassung -->
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2323474f'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='%23e7c887' text-anchor='middle'%3ETK%3C/text%3E%3C/svg%3E" />
+    <meta name="description" content="Thorsten Knauf – Go-to-Market-Strategie, Marktaufbau und Key Accounts für technologiebasierte Produkte und Dienstleistungen." />
+    <title>Thorsten Knauf · Go-to-Market-Strategie &amp; Marktaufbau</title>
+    <style>
+      :root {
+        --brown: #23474f;
+        --brown-deep: #14333a;
+        --gold: #c99a4e;
+        --gold-soft: #e7c887;
+        --sand: #e7e7e1;
+        --cream: #f5f6f3;
+        --white: #ffffff;
+        --ink: #2e383c;
+        --muted: #6a747a;
+        --line: #d9dee0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { color: var(--ink); background: var(--cream); line-height: 1.6; }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+      section { padding: 72px 0; }
+      h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; }
+
+      /* Header */
+      header {
+        position: sticky; top: 0; z-index: 10;
+        background: rgba(245,246,243,0.94);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+      .brand { font-weight: 700; color: var(--brown); text-decoration: none; font-size: 1.05rem; }
+      .brand span { color: var(--gold); }
+      .nav nav a { color: var(--ink); text-decoration: none; margin-left: 26px; font-size: 0.92rem; }
+      .nav nav a:hover { color: var(--gold); }
+      .nav nav a.cta-nav {
+        color: var(--white); background: var(--brown); padding: 8px 16px; border-radius: 6px;
+      }
+      .nav nav a.cta-nav:hover { background: var(--gold); color: var(--brown-deep); }
+
+      /* Hero */
+      .hero { background: linear-gradient(160deg, var(--brown-deep) 0%, var(--brown) 55%, #365f68 100%); color: var(--white); padding: 110px 0 96px; }
+      .kicker {
+        font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--gold-soft); margin-bottom: 18px;
+      }
+      .hero h1 { font-size: clamp(2rem, 4.6vw, 3.3rem); line-height: 1.15; max-width: 760px; }
+      .hero h1 em { color: var(--gold-soft); font-style: normal; }
+      .hero-sub { font-size: 1.08rem; color: var(--gold-soft); margin: 20px 0 0; max-width: 640px; line-height: 1.5; }
+      .hero p.lead { font-size: 1.15rem; color: #c8dbdd; max-width: 640px; margin: 22px 0 0; }
+      .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 44px; }
+      .btn {
+        display: inline-block; text-decoration: none; padding: 13px 26px; border-radius: 8px;
+        font-weight: 600; font-size: 0.98rem;
+      }
+      .btn-primary { background: var(--gold-soft); color: var(--brown-deep); }
+      .btn-primary:hover { background: #dcb061; }
+      .hero-note { margin-top: 16px; font-size: 0.85rem; color: #a4b5b8; }
+
+      /* Credo-Statement in Über mich */
+      .credo-statement {
+        font-size: clamp(2rem, 4.6vw, 3.3rem); line-height: 1.15;
+        max-width: 760px; color: var(--brown);
+        font-weight: 700; margin: 0 0 22px;
+      }
+      .credo-statement em { color: var(--gold); font-style: normal; }
+
+      /* Leistungen */
+      .services { background: var(--cream); }
+      .services h2, .section-title { font-size: 1.9rem; color: var(--brown); margin-bottom: 10px; }
+      .section-sub { color: var(--muted); max-width: 620px; margin-bottom: 40px; }
+      .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+      .card {
+        border: 1px solid var(--line); border-radius: 12px; padding: 28px 26px;
+        background: var(--white); transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(19,50,58,0.10); }
+      .card .icon {
+        width: 44px; height: 44px; border-radius: 10px; background: rgba(201,154,78,0.18);
+        display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+      }
+      .card .icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .card h3 { font-size: 1.1rem; color: var(--brown); margin-bottom: 10px; }
+      .card-sub { font-size: 0.85rem; font-weight: 600; color: var(--gold); margin: 0 0 10px; }
+      .card p { font-size: 0.94rem; color: var(--muted); }
+
+      /* Über mich in Hero-Farben */
+      .about-dark {
+        background: linear-gradient(160deg, var(--brown-deep) 0%, var(--brown) 55%, #365f68 100%);
+        color: var(--white);
+      }
+      .about-dark .credo-statement { color: var(--white); }
+      .about-dark .credo-statement em { color: var(--gold-soft); }
+      .about-dark .about-intro { color: #c8dbdd; }
+      .about-dark .section-sub { color: var(--gold-soft); font-size: 1.08rem; line-height: 1.5; margin: 0 0 22px; max-width: 640px; }
+      .about-light {
+        background: linear-gradient(160deg, var(--brown-deep) 0%, var(--brown) 55%, #365f68 100%);
+        color: var(--white);
+        padding-top: 32px;
+      }
+      .about-light .section-title { color: var(--white); }
+
+      /* Testimonials */
+      .testimonials { background: var(--cream); padding-top: 36px; }
+      .quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      @media (max-width: 760px) { .quotes { grid-template-columns: 1fr; } }
+      .quote-card {
+        border: 1px solid var(--line); border-radius: 12px; padding: 26px 24px;
+        background: var(--white); display: flex; flex-direction: column; gap: 16px;
+      }
+      .quote-card::before { content: "\201C"; display: block; font-size: 2rem; line-height: 1; color: var(--gold-soft); font-weight: 700; }
+      .quote-card blockquote { margin: 0; }
+      .quote-card blockquote p { font-size: 0.95rem; line-height: 1.6; color: var(--ink); font-style: italic; }
+      .quote-card figcaption b { display: block; color: var(--brown); font-size: 0.95rem; }
+      .quote-card figcaption span { font-size: 0.82rem; color: var(--muted); line-height: 1.45; display: block; margin-top: 2px; }
+
+      /* Über mich */
+      .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 26px; align-items: start; }
+      .about-intro { max-width: 720px; margin-bottom: 0; font-size: 1.15rem; }
+      .about-intro + .about-intro { margin-top: 22px; }
+      .about-intro:last-of-type { margin-bottom: 0; }
+      .panel { border-radius: 12px; padding: 30px 28px; }
+      .panel-light { background: var(--white); border: 1px solid var(--line); }
+      .stations-title { color: var(--brown); font-size: 1.05rem; margin-bottom: 8px; }
+      .panel-sand { background: var(--sand); box-shadow: 0 10px 28px rgba(19,50,58,0.14); }
+      .stations .station { padding: 16px 0; border-top: 1px solid var(--line); }
+      .stations .station:first-child { border-top: none; padding-top: 4px; }
+      .station-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+      .station-head b { color: var(--brown); font-size: 0.98rem; }
+      .station-head span { color: var(--muted); font-size: 0.84rem; white-space: nowrap; }
+      .station-org { color: var(--gold); font-size: 0.86rem; font-weight: 600; margin: 3px 0 8px; }
+      .station p { font-size: 0.9rem; color: var(--muted); }
+
+      /* Portrait-Foto */
+      .portrait {
+        margin: 0 0 30px; border-radius: 12px; overflow: hidden; position: relative;
+        background: linear-gradient(165deg, var(--brown) 0%, var(--gold) 100%);
+        aspect-ratio: 4 / 5; max-width: 300px;
+        box-shadow: 0 10px 28px rgba(19,50,58,0.14);
+      }
+      .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .portrait .fallback {
+        position: absolute; inset: 0; display: none; flex-direction: column;
+        align-items: center; justify-content: center; text-align: center; gap: 10px;
+        color: #d0dee0; font-size: 0.8rem; padding: 20px;
+      }
+      .portrait.noimg .fallback { display: flex; }
+      .portrait .fallback svg { width: 92px; height: 92px; opacity: 0.95; }
+      .portrait .fallback b { color: var(--gold-soft); font-size: 0.88rem; }
+      .portrait .fallback small { color: #a4b5b8; line-height: 1.5; }
+
+      /* Kontakt */
+      .contact { background: var(--cream); color: var(--ink); }
+      .contact h2 { color: var(--brown); font-size: 1.9rem; margin-bottom: 10px; }
+      .contact .section-sub { color: var(--muted); }
+      .contact-row { display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap; }
+      .contact-left { flex: 1 1 460px; max-width: 580px; }
+      .contact-card {
+        background: var(--white); border: 1px solid var(--line);
+        border-radius: 12px; padding: 28px; max-width: 560px;
+      }
+      .contact .portrait { flex: 0 1 360px; max-width: 360px; margin: 0; }
+      .contact-card a { color: var(--brown); text-decoration: none; font-weight: 600; }
+      .contact-card a:hover { text-decoration: underline; }
+      .contact-card .line { margin-bottom: 8px; font-size: 0.95rem; color: var(--muted); }
+
+      /* Footer */
+      footer { background: var(--brown-deep); color: #9fb0b4; padding: 40px 0 48px; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); }
+      footer details { margin-bottom: 18px; max-width: 760px; }
+      footer summary { cursor: pointer; color: var(--white); font-weight: 600; margin-bottom: 6px; }
+      footer p { margin-bottom: 6px; }
+      footer .fine { color: #73787e; }
+      .foot-grid { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+      .placeholder { color: var(--gold-soft); font-style: italic; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <a class="brand" href="#top">Thorsten Knauf<span>.</span></a>
+        <nav>
+          <a href="#leistungen">Leistungen</a>
+          <a href="#ueber-mich">Über mich</a>
+          <a class="cta-nav" href="#kontakt">Kontakt</a>
+          <a href="en/">EN</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="wrap">
+          <p class="kicker">Meine Mission</p>
+          <h1>Märkte aufbauen, <em>die Bedeutung haben.</em></h1>
+          <p class="hero-sub">
+            Marktfähigkeit schärfen. Geschäftsmodell und Go-to-Market-Strategie
+            entwickeln. Märkte und erste Key Accounts aufbauen.
+          </p>
+          <p class="lead">
+            Sie haben ein technologisch überzeugendes Produkt oder einen
+            Service. Aber ist es auch marktfähig? Neue Märkte sollen
+            erschlossen werden, doch ohne erste Referenzen bleibt alles am
+            Start? Und manchmal ist das Geschäftsmodell selbst der Engpass.
+            Oder in der Geschäftsleitung fehlt die kritische Gegenstimme,
+            die Entscheidungen prüft, bevor sie teuer werden.
+          </p>
+          <p class="lead">
+            Sie wünschen sich einen Sparringspartner für Strategie und
+            einen Macher bei der Umsetzung?
+          </p>
+          <p class="lead">
+            Genau dann komme ich ins Spiel. Lassen Sie uns miteinander
+            sprechen.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:mail@thorstenknauf.de">Vorgespräch mit Thorsten Knauf</a>
+          </div>
+          <p class="hero-note">30 Minuten · direkt mit mir</p>
+        </div>
+      </section>
+
+      <!-- Leistungen -->
+      <section class="services" id="leistungen">
+        <div class="wrap">
+          <h2>Drei Wege, Ihr Wachstum planbar zu machen.</h2>
+          <div class="cards">
+            <div class="card">
+              <div class="icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg>
+              </div>
+              <h3>Go-to-Market-Strategie &amp; Geschäftsmodell</h3>
+              <p class="card-sub">Zielmärkte, Wertargumentation, Preismodelle, Vertriebskanäle</p>
+              <p>Ihre Markteintritts- und Vertriebsstrategie für technologiebasierte
+              Produkte oder Dienstleistungen – samt dem Geschäftsmodell dahinter.</p>
+            </div>
+            <div class="card">
+              <div class="icon">
+                <svg viewBox="0 0 24 24"><path d="M4 20 L11 8 L14.5 14 L18 10.5 L21 20 Z"/><path d="M11 8 V2.5"/><path d="M11 3 H15 L13.5 5 L15 7 H11"/></svg>
+              </div>
+              <h3>Marktaufbau &amp; Key Accounts</h3>
+              <p class="card-sub">Von Zero auf Trusted Partner</p>
+              <p>Neue Marktsegmente, Regionen und erste strategische
+              Kundenbeziehungen. Inklusive Opening neuer Standorte und
+              Geschäftseinheiten sowie strukturierter
+              Key-Account-Entwicklung.</p>
+            </div>
+            <div class="card">
+              <div class="icon">
+                <svg viewBox="0 0 24 24"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg>
+              </div>
+              <h3>Strategie-Sparring &amp; Beirat</h3>
+              <p class="card-sub">Strategische Begleitung in Technologie- und Marktfragen</p>
+              <p>Entscheidungen prüfen, Wachstumsziele schärfen, Prioritäten
+              setzen – als regelmäßiges Sparring oder im Beirat, kritisch und
+              auf Augenhöhe.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Über mich – Credo + Stationen in LinkedIn-Struktur (Rolle, Unternehmen, Zeitraum, Beschreibung) -->
+      <section class="about-dark">
+        <div class="wrap">
+          <p class="kicker">Mein Credo</p>
+          <p class="credo-statement">Markterfolg entsteht <em>durch Vertrauen
+          und Leidenschaft für Menschen und Produkte.</em></p>
+          <p class="section-sub">
+            Mich treibt seit Anbeginn die Frage an: „Wie wird aus guter
+            Technologie ein Geschäft, das trägt?"
+          </p>
+          <p class="about-intro">
+            Ein außerordentliches Privileg besteht für mich bis heute darin, in
+            der Innovationsbranche immer ganz vorn dabei zu sein.
+            Geschäftsmodelle und Produkte neu zu denken, die Märkte
+            nachhaltig verändern.
+          </p>
+          <p class="about-intro">
+            15 Branchen habe ich kennengelernt und aufgebaut. Stets bei Null
+            begonnen.
+          </p>
+          <p class="about-intro">
+            Dazu gehört es, Märkte, Einheiten, Standorte aufzubauen,
+            Führungskräfte zu gewinnen und selbst mit Verantwortung zu führen.
+          </p>
+          <p class="about-intro">
+            Zwei Unternehmen habe ich beim Wachstum von 20 auf 1.600 in DACH
+            und von 180 auf 1.800 Mitarbeiter:innen international begleitet.
+          </p>
+          <p class="about-intro">
+            Aus vielen Kundenbeziehungen wurden jahrzehntelange
+            Weggefährten.
+          </p>
+          <p class="about-intro">
+            Mein Erfahrungsschatz umfasst 35 Jahre internationale
+            Consulting- und Projekterfahrung. Unternehmertum im Unternehmen,
+            nachhaltige Kundenbeziehungen und ein kumuliertes
+            Auftragsvolumen im dreistelligen Millionenbereich.
+          </p>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonials" id="stimmen">
+        <div class="wrap">
+          <h2 class="section-title">Kundenstimmen</h2>
+          <div class="quotes">
+            <figure class="quote-card">
+              <blockquote>
+                <p>“Even in difficult situations he scores with short-term and cost-efficient solution proposals and thus becomes an essential pillar for successful projects. He puts the customer and sustainable action at the center of his work.”</p>
+              </blockquote>
+              <figcaption>
+                <b>Jens Müller</b>
+                <span>VP R&amp;D | Project Portfolio | Deputy Head Global R&amp;D, KARL STORZ</span>
+              </figcaption>
+            </figure>
+            <figure class="quote-card">
+              <blockquote>
+                <p>“He was always investing a lot of time in trying to understand the customer needs – and in staying close to the project team, especially in storming phases. Approaches all his work in a very structured way, while bringing a lot of creative ideas.”</p>
+              </blockquote>
+              <figcaption>
+                <b>Aleksandar Marjanovic</b>
+                <span>Chief Digital Business Officer | Member of the Management Board, Screening Eagle | Proceq</span>
+              </figcaption>
+            </figure>
+            <figure class="quote-card">
+              <blockquote>
+                <p>“His passion, knowledge and network in this market segment is outstanding. He is very open-minded towards change, new innovation and making things possible.”</p>
+              </blockquote>
+              <figcaption>
+                <b>Dr. Patrik Scholler</b>
+                <span>Advising MedTech, Building SaMD – Life Sciences Consulting, EU MDR, Market Access, AI in Healthcare</span>
+              </figcaption>
+            </figure>
+            <figure class="quote-card">
+              <blockquote>
+                <p>“Thorsten acted in a highly professional and highly effective manner during both scoping and execution of a complex, long-term project pursued between our organizations. I would gladly look forward to another opportunity to work together.”</p>
+              </blockquote>
+              <figcaption>
+                <b>Dr. Farhad Imam</b>
+                <span>Director, Health &amp; Life Sciences, Gates Ventures (at the time of recommendation)</span>
+              </figcaption>
+            </figure>
+            <figure class="quote-card">
+              <blockquote>
+                <p>“I have quickly come to value him as a very knowledgeable and reliable business partner. He is an excellent and discreet partner/moderator, even in difficult situations.”</p>
+              </blockquote>
+              <figcaption>
+                <b>Dr. Christian Eggert</b>
+                <span>Head of Division Liquid Handling, Eppendorf (at the time of recommendation)</span>
+              </figcaption>
+            </figure>
+            <figure class="quote-card">
+              <blockquote>
+                <p>“I am impressed by how he lives corporate and personal values, being absolutely authentic and a highly credible ambassador for the company. He surely goes the extra mile – and makes you do the same. And you even enjoy it.”</p>
+              </blockquote>
+              <figcaption>
+                <b>Iris Krings</b>
+                <span>Managing Director, Krings Executive Search</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-light" id="ueber-mich">
+        <div class="wrap">
+          <h2 class="section-title">Vita</h2>
+          <div class="about-grid">
+            <div class="panel panel-light">
+              <h3 class="stations-title">Stationen</h3>
+              <div class="stations">
+                <div class="station">
+                  <div class="station-head">
+                    <b>Director Business Development</b>
+                    <span>2003 – 2026</span>
+                  </div>
+                  <div class="station-org">Zühlke Group · EMEA</div>
+                  <p>Mehr als zwei Jahrzehnte Aufbau von branchenübergreifenden
+                  Kundenbeziehungen von Grund auf mit kumulierten Auftragswerten
+                  von über 350 Mio. €; viele der großen Accounts sind bis heute
+                  aktiv. In dieser Zeit wuchs Zühlke von
+                  180 auf über 1.800 Mitarbeitende in 17 Standorten und 10 Ländern. Als
+                  etablierter, vertrauensvoller Berater stand ich Geschäftsleitungen mit
+                  umfassendem Verständnis technologischer Trends und unternehmerischem
+                  Urteilsvermögen zur Seite.</p>
+                </div>
+                <div class="station">
+                  <div class="station-head">
+                    <b>Business Center Director DACH</b>
+                    <span>2001 – 2002</span>
+                  </div>
+                  <div class="station-org">Cambridge Technology Partners · DACH</div>
+                  <p>Verantwortung für Delivery, Sales und Marketing in den Branchen
+                  Utilities, Telekommunikation und Retail. Schwerpunkte: CRM-Lösungen, B2B-Portale
+                  und IT-Strategieberatung. 2001 wurde CTP von Novell übernommen.</p>
+                </div>
+                <div class="station">
+                  <div class="station-head">
+                    <b>Principal / Director (ad interim)</b>
+                    <span>1992 – 2000</span>
+                  </div>
+                  <div class="station-org">American Management Systems (heute CGI) · Weltweit</div>
+                  <p>Ausgewählte Projekte: Gesamtarchitektur für das Collateral Management
+                  einer großen internationalen Bank (CH, UK, USA); Entwicklung eines
+                  Marktrisiko-Managementsystems inklusive Genehmigung der internen Modelle
+                  durch die Bankenaufsicht; Integration und Weiterentwicklung von
+                  Trade-Finance-Systemen für Kunden in Europa, USA, China und Japan.
+                  AMS wuchs in 6 Jahren von 20 auf 1.600 Mitarbeitende in DACH.</p>
+                </div>
+                <div class="station">
+                  <div class="station-head">
+                    <b>IT-Dozent &amp; Leiter der IT-Trainingszentren</b>
+                    <span>1989 – 1991</span>
+                  </div>
+                  <div class="station-org">Deutsche Bahn · Deutschland</div>
+                  <p>Parallel zum Studium: Ausbildung von Mitarbeitenden der Deutschen Bahn
+                  und externer Unternehmen in innovativen IT-Themen; Leitung der
+                  IT-Infrastruktur der zehn Trainingszentren in Deutschland.</p>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-sand">
+              <h3 class="stations-title">Ausbildung</h3>
+              <div class="stations">
+                <div class="station">
+                  <div class="station-head">
+                    <b>SGMI Management Institut St. Gallen</b>
+                    <span>2011</span>
+                  </div>
+                  <div class="station-org">Master Certificate in Sales &amp; Marketing · Note 1.0</div>
+                  <p>Abschlussarbeit zur strategischen Neupositionierung des Business
+                  Developments in einem führenden IT- und Engineering-Dienstleistungsunternehmen
+                  mit anspruchsvollen Wachstumszielen.</p>
+                </div>
+                <div class="station">
+                  <div class="station-head">
+                    <b>Georgetown University, Washington D.C.</b>
+                    <span>1999</span>
+                  </div>
+                  <div class="station-org">International Master Certificate Program</div>
+                  <p>Abschlussarbeit für die Deutsche Bank AG im Kontext der Fusion mit
+                  Bankers Trust: Integration des globalen Teams für das
+                  Marktrisiko-Management.</p>
+                </div>
+                <div class="station">
+                  <div class="station-head">
+                    <b>Frankfurt University of Applied Sciences</b>
+                    <span>1992</span>
+                  </div>
+                  <div class="station-org">Dipl.-Ing. Informatik</div>
+                  <p>Abschlussarbeit für die Höchst AG (heute Sanofi-Aventis): Optimierung des
+                  Systems zur Produktionsplanung und -steuerung für ein großes
+                  Produktionswerk in Österreich.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kontakt -->
+      <section class="contact" id="kontakt">
+        <div class="wrap">
+          <div class="contact-row">
+            <div class="contact-left">
+              <h2>Lassen Sie uns sprechen.</h2>
+              <p class="section-sub">
+                Ob konkrete Expansionsfrage oder erste Sondierung – Sie erhalten
+                eine persönliche, unkomplizierte Antwort. Ein Vorgespräch dauert
+                30 Minuten. Und Sie sprechen direkt mit
+                mir – nicht mit einem Assistenten.
+              </p>
+              <div class="contact-card">
+                <p class="line"><strong>E-Mail:</strong> <a href="mailto:mail@thorstenknauf.de">mail@thorstenknauf.de</a></p>
+                <p class="line"><strong>Telefon:</strong> <a href="tel:+491733066990">0173 30 66 99 0</a></p>
+                <p class="line"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/thorsten-knauf/" target="_blank" rel="noopener">linkedin.com/in/thorsten-knauf</a></p>
+              </div>
+            </div>
+            <!-- Foto-Platzhalter: Das Portraitfoto (Thorsten_Knauf_648.jpg) als "thorsten-knauf.jpg"
+                 neben die index.html ins GitHub-Pages-Repo legen – es erscheint dann automatisch hier.
+                 Solange die Datei fehlt, wird der Platzhalter angezeigt. Selbst gehostet, kein
+                 externes Asset -> DSGVO-freundlich. -->
+            <figure class="portrait">
+              <img src="thorsten-knauf.jpg" alt="Portraitfoto Thorsten Knauf"
+                   onerror="this.closest('.portrait').classList.add('noimg'); this.remove();" />
+              <div class="fallback" aria-hidden="true">
+                <svg viewBox="0 0 96 96">
+                  <circle cx="48" cy="34" r="16" fill="#e7c887"/>
+                  <path d="M15 92c0-19 14.5-32 33-32s33 13 33 32" fill="#e7c887"/>
+                </svg>
+                <b>Foto-Platzhalter</b>
+                <small>Datei „thorsten-knauf.jpg“<br />wird hier eingebunden</small>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <details>
+          <summary>Impressum</summary>
+          <p><strong>Thorsten Knauf</strong><br />
+          Am Mühlenteich 20<br />
+          23611 Bad Schwartau<br />
+          Deutschland</p>
+          <p>Kontakt: <a href="mailto:mail@thorstenknauf.de" style="color:#e7c887;">mail@thorstenknauf.de</a> · Telefon: 0173 30 66 99 0</p>
+          <p>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: Thorsten Knauf, Am Mühlenteich 20, 23611 Bad Schwartau</p>
+          <p>USt-IdNr.: <span class="placeholder">[USt-ID – nach Erteilung ergänzen]</span></p>
+        </details>
+        <details>
+          <summary>Datenschutzerklärung</summary>
+          <p>Diese Seite nutzt keine externen Fonts, kein Tracking und keine
+          Analyse-Tools. Die vollständige Datenschutzerklärung finden Sie hier:
+          <a href="datenschutz.html" style="color:#e7c887;">Datenschutzerklärung</a></p>
+        </details>
+        <div class="foot-grid">
+          <p>© 2026 Thorsten Knauf</p>
+          <p class="fine">thorstenknauf.de</p>
+        </div>
+      </div>
+    </footer>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" nonce="18yPC/uYyoi4BU0XBt6tYQ==" data-cf-beacon='{"version":"2024.11.0","token":"36b4216ae2dc4d5488c249161e71fe1e","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
